@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,12 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Tic Tac Toe"
-        android:textSize="22sp"
         android:layout_marginTop="15dp"
-   />
+        android:text="Tic Tac Toe"
+        android:textSize="30sp" />
+
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_alignParentStart="true"
@@ -23,61 +23,55 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="46dp" >
+        android:layout_marginTop="56dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="348dp">
 
             <Button
                 android:id="@+id/position00"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="61dp"
-                android:layout_marginLeft="61dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="101dp" />
 
             <Button
                 android:id="@+id/position01"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/position00"
-                android:layout_toEndOf="@+id/position00"
+                android:layout_alignBaseline="@+id/position00"
                 android:layout_toRightOf="@+id/position00" />
 
             <Button
                 android:id="@+id/position02"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/position00"
+                android:layout_alignBaseline="@+id/position00"
                 android:layout_toEndOf="@+id/position01"
                 android:layout_toRightOf="@+id/position01" />
 
             <Button
                 android:id="@+id/position10"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/position00"
-                android:layout_centerVertical="true"
-                android:layout_alignRight="@+id/position00" />
+                android:layout_below="@+id/position00"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp" />
 
             <Button
                 android:id="@+id/position11"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/position10"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginStart="148dp"
-                android:layout_marginLeft="148dp"
-                android:layout_marginTop="0dp"/>
+                android:layout_alignBaseline="@+id/position10"
+                android:layout_toRightOf="@+id/position10"
+                android:layout_toEndOf="@+id/position10" />
 
 
             <Button
                 android:id="@+id/position12"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/position10"
                 android:layout_toEndOf="@+id/position11"
@@ -85,26 +79,25 @@
 
             <Button
                 android:id="@+id/position20"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/position10"
                 android:layout_alignStart="@+id/position00"
-                android:layout_alignLeft="@+id/position00" />
+                android:layout_alignLeft="@+id/position00"
+                android:layout_marginTop="0dp" />
 
             <Button
                 android:id="@+id/position21"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="0dp"
                 android:layout_marginBottom="103dp"
                 android:layout_toEndOf="@+id/position00"
-                android:layout_marginLeft="0dp"
                 android:layout_toRightOf="@+id/position00" />
 
             <Button
                 android:id="@+id/position22"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/position10"
                 android:layout_alignEnd="@+id/position02"
@@ -112,17 +105,32 @@
 
             <Button
                 android:id="@+id/reset"
-                android:layout_width="wrap_content"
+                android:layout_width="129dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="130dp"
-                android:layout_marginLeft="130dp"
-                android:layout_marginBottom="22dp"
-                android:text="reset" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="117dp"
+                android:layout_marginLeft="117dp"
+                android:layout_marginBottom="43dp"
+                android:background="@color/colorAccent"
+                android:text="reset"
+                android:textColor="#f1e8e8" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/whoWon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardview"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="16sp" />
 
 </RelativeLayout>

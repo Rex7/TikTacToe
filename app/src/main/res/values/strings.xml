@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TikTac</string>
+    <string name="player_won">Player %d Won </string>
 </resources>

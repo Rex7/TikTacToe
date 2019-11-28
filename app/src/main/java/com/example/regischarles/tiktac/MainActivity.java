@@ -1,10 +1,13 @@
 package com.example.regischarles.tiktac;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
     int  gameOver = 1;
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     };
     Button position00,position01,position02,position10,position11,position12,position20,position21,position22,reset;
+    TextView won;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     }
     void iniliaseButton(){
         reset=findViewById(R.id.reset);
+        won=findViewById(R.id.whoWon);
         position00=findViewById(R.id.position00);
         position01=findViewById(R.id.position01);
         position02=findViewById(R.id.position02);
@@ -161,7 +166,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                  }
              }
          } else if (player == 2) {
-             flag=returnFlag(array, player);
+             flag=returnFlag(array);
          }
          System.out.println("falg " + flag);
 
@@ -171,14 +176,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
      }
         return flag;
     }
-    public  boolean returnFlag(String array[][],int player){
+    public  boolean returnFlag(String array[][]){
         int count=0;
         boolean flag=false;
         int i;
         if(gameOver==1){
             for ( int j = 1; j <=8; j++) {
                 switch (j) {
-
+                    //first row checking
                     case 1:
 
                         for ( i = 0; i < 3; i++) {
@@ -191,6 +196,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                         count=0;
                         break;
+                        //second row checking
                     case 2:
                         for ( i = 0; i < 3; i++) {
                             if (array[1][i].equals("0")) {
@@ -202,6 +208,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                         count=0;
                         break;
+                        //third row checking
                     case 3:
                         for ( i = 0; i < 3; i++) {
                             if (array[2][i].equals("0")) {
@@ -213,6 +220,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                         count=0;
                         break;
+                        //first horizontal checking
                     case 4:
                         for (i = 0; i < 3; i++) {
                             if (array[i][0].equals("0")) {
@@ -224,6 +232,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                         count=0;
                         break;
+                        //second horizontal checking
                     case 5:
                         for ( i = 0; i < 3; i++) {
                             if (array[i][1].equals("0")) {
@@ -235,6 +244,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                         count=0;
                         break;
+                        //third horizontal checking
                     case 6:
                         for (i = 0; i < 3; i++) {
                             if (array[i][2].equals("0")) {
@@ -247,8 +257,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         count=0;
                         break;
                     case 7:
+                        //left cross checking
                         for (i = 0; i < 3; i++) {
-                            if (array[0][i].equals("0")) {
+                            if (array[i][i].equals("0")) {
                                 count++;
                             }
                         }
@@ -257,11 +268,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                         count=0;
                         break;
+                        //right cross checking
                     case 8:
+                        int temp = 2;
                         for ( i = 0; i < 3; i++) {
-                            if (array[0][i].equals("0")) {
+                            if (array[i][temp].equals("0")) {
                                 count++;
                             }
+                            temp--;
                         }
                         if (count == 3) {
                             flag = true;
@@ -372,6 +386,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     }
     public void checkPlayer(int i,int j,int player){
+        Log.v("MainActivityClass","Index i"+i+"Index j"+j+"value "+array[i][j]);
        if(gameOver==1){
            if (player == 1) {
                if (array[i][j].equals("_")) {
@@ -414,13 +429,24 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                    boolean flag = checkGameOver(array, player);
                    if (flag) {
                        gameOver = 0;
+                       won.setText(getResources().getString(R.string.player_won,player));
                        Log.v("MainActivityClass","player"+player);
                            resetArray();
 
                    }
 
                } else if (!array[i][j].equals("_")) {
-                   array[i][j] = "X";
+                  this.player=2;
+                   new AlertDialog.Builder(this)
+                           .setTitle("Tic Tac Toe")
+                           .setMessage("insert X  somewhere  else")
+                           .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialog, int which) {
+                                   dialog.dismiss();
+                               }
+                           }).show();
+
                }
 
            }
@@ -466,49 +492,25 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                    boolean flag = checkGameOver(array, player);
                    if (flag) {
                        gameOver = 0;
+                       won.setText(getResources().getString(R.string.player_won,player));
                        Log.v("MainActivityClass","player"+player);
                        resetArray();
                    }
 
                }
                //if not equals then do something
-               else if (!array[i][j].equals("_") ) {
-                   array[i][j] = "0";
-                   switch (i){
-                       case 0:
-                           if(j==0){
-                               position00.setText("0");
-                           }
-                           else if(j==1){
-                               position01.setText("0");
-                           }
-                           else if(j==2){
-                               position02.setText("0");
-                           }
-                           break;
-                       case 1:
-                           if(j==0){
-                               position10.setText("0");
-                           }
-                           else if(j==1){
-                               position11.setText("0");
-                           }
-                           else if(j==2){
-                               position12.setText("0");
-                           }
-                           break;
-                       case 2:
-                           if(j==0){
-                               position20.setText("0");
-                           }
-                           else if(j==1){
-                               position21.setText("0");
-                           }
-                           else if(j==2){
-                               position22.setText("0");
-                           }
-                           break;
-                   }
+               else if (!(array[i][j].equals("_")) ) {
+                   this.player=1;
+                   new AlertDialog.Builder(this)
+                           .setTitle("Tic Tac Toe")
+                           .setMessage("Insert 0 somehwhere else")
+                           .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialog, int which) {
+                                   dialog.dismiss();
+                               }
+                           }).show();
+
                }
            }
 
@@ -519,6 +521,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
            Log.v("BabeCheckPLayer","GameOver"+gameOver);
            resetArray();
        }
+        Log.v("MainActivityClass End","Index i"+i+"Index j"+j+"value "+array[i][j]);
     }
     public void resetArray(){
                for (int i = 0; i < 3; i++) {

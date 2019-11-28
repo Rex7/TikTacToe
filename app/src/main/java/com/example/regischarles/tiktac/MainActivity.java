@@ -414,6 +414,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                    boolean flag = checkGameOver(array, player);
                    if (flag) {
                        gameOver = 0;
+                       Log.v("MainActivityClass","player"+player);
+                           resetArray();
+
                    }
 
                } else if (!array[i][j].equals("_")) {
@@ -463,6 +466,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                    boolean flag = checkGameOver(array, player);
                    if (flag) {
                        gameOver = 0;
+                       Log.v("MainActivityClass","player"+player);
+                       resetArray();
                    }
 
                }

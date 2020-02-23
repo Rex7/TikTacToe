@@ -1,6 +1,8 @@
 package com.example.regischarles.tiktac;
 
 import android.content.DialogInterface;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
     int  gameOver = 1;
+    Snackbar snackbar;
+    CoordinatorLayout coordinatorLayout;
 
     int player=1;
     int i,j;
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        coordinatorLayout=findViewById(R.id.coordinate);
+
         iniliaseButton();
 
 
@@ -429,7 +435,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                    boolean flag = checkGameOver(array, player);
                    if (flag) {
                        gameOver = 0;
-                       won.setText(getResources().getString(R.string.player_won,player));
+                       won.setText(getResources().getString(R.string.player_won)+player);
+                       snackbar=Snackbar.make(coordinatorLayout,getResources().getString(R.string.player_won)+player,Snackbar.LENGTH_LONG);
+                       snackbar.show();
                        Log.v("MainActivityClass","player"+player);
                            resetArray();
 
@@ -492,7 +500,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                    boolean flag = checkGameOver(array, player);
                    if (flag) {
                        gameOver = 0;
-                       won.setText(getResources().getString(R.string.player_won,player));
+
+                       snackbar=Snackbar.make(coordinatorLayout,"Player Won "+player,Snackbar.LENGTH_LONG);
+                       snackbar.show();
                        Log.v("MainActivityClass","player"+player);
                        resetArray();
                    }

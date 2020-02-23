@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Tic Tac Toe"
+        android:layout_marginTop="12dp"
+        android:text="@string/app_name"
         android:textSize="30sp" />
 
 
@@ -28,27 +28,29 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="348dp">
-
             <Button
                 android:id="@+id/position00"
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="101dp" />
+                android:layout_marginTop="50dp" />
 
             <Button
                 android:id="@+id/position01"
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/position00"
-                android:layout_toRightOf="@+id/position00" />
+                android:layout_toRightOf="@+id/position00"
+                android:layout_toEndOf="@+id/position00" />
 
             <Button
                 android:id="@+id/position02"
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/position00"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
                 android:layout_toEndOf="@+id/position01"
                 android:layout_toRightOf="@+id/position01" />
 
@@ -90,10 +92,9 @@
                 android:id="@+id/position21"
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="103dp"
-                android:layout_toEndOf="@+id/position00"
-                android:layout_toRightOf="@+id/position00" />
+                android:layout_alignBaseline="@+id/position20"
+                android:layout_toRightOf="@+id/position20"
+                android:layout_toEndOf="@+id/position20" />
 
             <Button
                 android:id="@+id/position22"
@@ -105,17 +106,15 @@
 
             <Button
                 android:id="@+id/reset"
-                android:layout_width="129dp"
+                android:layout_width="198dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/position20"
+                android:layout_marginTop="40dp"
+
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="117dp"
-                android:layout_marginLeft="117dp"
-                android:layout_marginBottom="43dp"
+
                 android:background="@color/colorAccent"
-                android:text="reset"
+                android:text="@string/reset"
                 android:textColor="#f1e8e8" />
         </RelativeLayout>
 

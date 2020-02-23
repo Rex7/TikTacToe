@@ -10,10 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
     int  gameOver = 1;
     Snackbar snackbar;
+    int draw=9;
     CoordinatorLayout coordinatorLayout;
 
     int player=1;
@@ -68,6 +70,24 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     public  boolean checkGameOver(String[][] array, int player) {
         int count = 0;
         boolean flag = false;
+        if(draw==0 &&gameOver==1){
+
+            Log.v("BabeCheck","reset");
+            Log.v("BabeCheck",""+draw);
+            new AlertDialog.Builder(this)
+                    .setTitle("Tic Tac Toe")
+                    .setMessage("Draw")
+                    .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+
+            resetArray();
+        }
+
+
 
      if(gameOver==1){
          if (player == 1) {
@@ -292,9 +312,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 }
             }
         }
+
         else if(gameOver==0){
             resetArray();
         }
+
+
         return flag;
     }
 
@@ -303,6 +326,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
    int id=v.getId();
         Log.v("Babe","GameOver "+gameOver);
+        draw--;
+        String won=getResources().getString(R.string.title,1,0);
+        Log.v("Babe",won);
+        Log.v("Babe",""+draw);
+
+
+
         if(gameOver==1){
             switch (id){
                 case R.id.position00:
@@ -393,6 +423,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     }
     public void checkPlayer(int i,int j,int player){
         Log.v("MainActivityClass","Index i"+i+"Index j"+j+"value "+array[i][j]);
+
        if(gameOver==1){
            if (player == 1) {
                if (array[i][j].equals("_")) {
@@ -433,6 +464,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                            break;
                    }
                    boolean flag = checkGameOver(array, player);
+
                    if (flag) {
                        gameOver = 0;
                        won.setText(getResources().getString(R.string.player_won)+player);
@@ -440,6 +472,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                        snackbar.show();
                        Log.v("MainActivityClass","player"+player);
                            resetArray();
+
 
                    }
 
@@ -529,6 +562,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
            Log.v("BabeCheckPLayer","won player"+player);
            Log.v("BabeCheckPLayer","GameOver"+gameOver);
+
+          // Toast.makeText(getApplicationContext(),won,Toast.LENGTH_LONG).show();
            resetArray();
        }
         Log.v("MainActivityClass End","Index i"+i+"Index j"+j+"value "+array[i][j]);
@@ -550,6 +585,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         position21.setText("");
         position22.setText("");
         gameOver=1;
+        draw=9;
 
 
     }

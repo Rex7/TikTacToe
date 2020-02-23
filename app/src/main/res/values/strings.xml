@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
     <string name="player_won">Player Won </string>
+    <string name="title">Player1 %d  Player2 %d</string>
     <string name="reset">Reset</string>
 
 </resources>
